@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ShoppingCartMapper">
+    <select id="findByUidAndDid" resultType="shoppingCart">
+        select * from shopping_cart
+        <where>
+            user_id = #{userId}
+            <if test="dishId != null">
+                and dish_id = #{dishId}
+            </if>
+            <if test="setmealId != null">
+                and setmeal_id = #{setmealId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert">
+        insert into shopping_cart(
+            id,
+            `name`,
+            image,
+            user_id,
+            dish_id,
+            setmeal_id,
+            dish_flavor,
+            `number`,
+            amount
+        ) values (
+                     #{id},
+                     #{name},
+                     #{image},
+                     #{userId},
+                     #{dishId},
+                     #{setmealId},
+                     #{dishFlavor},
+                     #{number},
+                     #{amount}
+                 )
+    </insert>
+</mapper>

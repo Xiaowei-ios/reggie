@@ -1,0 +1,7 @@
+# Project exclude paths
+/reggie-common/target/
+/reggie-domain/target/
+/reggie-mapper/target/
+/reggie-service/target/
+/reggie-web-app/target/
+/reggie-web-manage/target/

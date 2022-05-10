@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace必须是mapper接口全路径-->
+<mapper namespace="com.itheima.mapper.EmployeeMapper">
+
+    <sql id="baseColumns">id,name,username,password,phone,sex,id_number,status,create_time,update_time,create_user,update_user</sql>
+
+
+    <insert id="save" >
+        insert into employee(
+            id,
+            `name`,
+            username,
+            password,
+            phone,
+            sex,
+            id_number,
+            create_user,
+            update_user
+        ) values (
+            #{id},
+            #{name},
+            #{username},
+            #{password},
+            #{phone},
+            #{sex},
+            #{idNumber},
+            #{createUser},
+            #{updateUser}
+        )
+    </insert>
+
+    <select id="pageFindAll" resultType="employee">
+        select
+        <include refid="baseColumns"></include>
+        from employee
+        <where>
+            <if test="name != null and name != ''">
+                name like #{name}
+            </if>
+        </where>
+        order by update_time DESC
+    </select>
+
+
+    <update id="update">
+        update employee
+        <set>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="username != null and username != ''">
+                username=#{username},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone=#{phone},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex=#{sex},
+            </if>
+            <if test="idNumber != null and idNumber != ''">
+                id_number=#{idNumber},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+            <if test="updateUser != null">
+                update_user=#{updateUser},
+            </if>
+            <if test="status != null">
+                status=#{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

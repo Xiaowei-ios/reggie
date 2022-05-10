@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.mapper.DishFlavorMapper">
+    <insert id="saveflavor">
+        insert into dish_flavor(
+            id,
+            dish_id,
+            `name`,
+            `value`,
+            create_user,
+            update_user
+        ) values (
+                     #{id},
+                     #{dishId},
+                     #{name},
+                     #{value},
+                     #{createUser},
+                     #{updateUser}
+                 )
+    </insert>
+
+    <insert id="insert">
+        insert into dish_flavor(
+            id,
+            dish_id,
+            `name`,
+            `value`,
+            create_user,
+            update_user
+        ) values (
+                     #{id},
+                     #{dishId},
+                     #{name},
+                     #{value},
+                     #{createUser},
+                     #{updateUser}
+                 )
+    </insert>
+
+    <update id="deleteByIds">
+        update dish set is_deleted = 1
+        <where>
+            <foreach collection="array" item="id" open="id in(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+</mapper>

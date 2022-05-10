@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace必须是mapper接口全路径-->
+<mapper namespace="com.itheima.mapper.OrdersMapper">
+    <select id="findByNumber" resultType="orders">
+        select * from orders
+        <where>
+            <if test="number != null">
+                number = #{number}
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insert">
+        insert into orders(
+            id,
+            `number`,
+            status,
+            user_id,
+            address_book_id,
+            order_time,
+            checkout_time,
+            pay_method,
+            amount,
+            remark,
+            phone,
+            address,
+            consignee
+        ) values (
+                     #{id},
+                     #{number},
+                     #{status},
+                     #{userId},
+                     #{addressBookId},
+                     #{orderTime},
+                     #{checkoutTime},
+                     #{payMethod},
+                     #{amount},
+                     #{remark},
+                     #{phone},
+                     #{address},
+                     #{consignee}
+                 )
+    </insert>
+</mapper>
